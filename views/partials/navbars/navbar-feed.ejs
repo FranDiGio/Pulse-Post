@@ -1,33 +1,34 @@
 <header class="container-fluid p-0 bg-light sticky-top shadow-sm">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container d-flex flex-nowrap">
+		<div class="container-md d-flex flex-nowrap">
+			<!-- Left side collapse for offcanvas (up to md) -->
+			<div class="d-flex d-md-none ms-2 align-items-center">
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFeed">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+
 			<!-- Home, Trending, and Search -->
-			<div class="d-flex align-items-center">
-				<a href="/feed/" class="col-2 me-1">
+			<div class="d-none d-md-flex align-items-center">
+				<a class="col-2 me-1" href="/feed/">
 					<div class="flex-shrink-0 overflow-hidden my-3" style="max-height: 60px">
-						<img class="header-icon" alt="home icon" src="/svg/house.svg" style="max-height: 60px" />
+						<img class="header-icon" alt="home icon" src="/svg/house.svg" />
 					</div>
 				</a>
 
 				<a class="col-2 me-1" id="trending-btn" style="cursor: pointer">
 					<div class="flex-shrink-0 overflow-hidden my-3" style="max-height: 60px">
-						<img
-							class="header-icon"
-							id="trending-img"
-							alt="fire icon"
-							src="/svg/fire.svg"
-							style="max-height: 60px"
-						/>
+						<img class="header-icon" id="trending-img" alt="fire icon" src="/svg/fire.svg" />
 					</div>
 				</a>
 
-				<form class="col-10 col-lg-auto mb-0 me-lg-3" role="search">
+				<form class="col-md-10 mb-0 me-lg-3" role="search">
 					<input type="search" class="form-control open-sans-title" placeholder="Search..." />
 				</form>
 			</div>
 
 			<!-- Right side navlinks -->
-			<div class="dropdown mt-1 px-3 pt-2 d-flex flex-nowrap border border-primary bg-primary-subtle rounded-5">
+			<div class="dropdown me-2 px-3 pt-2 d-flex flex-nowrap border border-primary bg-primary-subtle rounded-5">
 				<p class="me-2 mt-2"><%= username %></p>
 				<a
 					class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
@@ -56,3 +57,47 @@
 		</div>
 	</nav>
 </header>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasFeed">
+	<div class="offcanvas-header bg-light">
+		<h5 class="offcanvas-title" id="offcanvasFeedLabel">Browse</h5>
+		<div class="w-100 d-flex flex-row-reverse">
+			<a class="col-2 ps-2" id="trending-btn" style="cursor: pointer">
+				<div class="overflow-hidden" style="max-height: 30px">
+					<img class="header-icon" id="trending-img" src="/svg/fire-gray.svg" />
+				</div>
+			</a>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+	</div>
+	<div class="offcanvas-body">
+		<nav class="d-flex w-100">
+			<ul class="list-unstyled col-6">
+				<li class="bd-links-group py-2">
+					<img src="/svg/posts.svg" />
+					<strong class="d-inline-block rounded">My Posts</strong>
+					<ul class="list-unstyled fw-normal ps-3 py-2 small col-8">
+						<li>
+							<a href="/docs/5.3/getting-started/introduction/" class="d-inline-block rounded active">
+								1st Post
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="list-unstyled col-6">
+				<li class="bd-links-group py-2">
+					<strong class="d-inline-block rounded mb-1">Following</strong>
+					<ul class="list-unstyled fw-normal ps-3 py-2 small col-8">
+						<li>
+							<a href="/docs/5.3/getting-started/introduction/" class="d-inline-block rounded active">
+								Introduction
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<ul class="list-unstyled fw-normal pb-2"></ul>
+	</div>
+</div>

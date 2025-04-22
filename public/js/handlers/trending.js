@@ -7,12 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
 	const trendImage = document.getElementById('trending-img');
 	var isTrending = false;
 
-	function toggleTrending() {
+	trendButton.addEventListener('click', function (event) {
+		event.preventDefault();
+
+		// Disable button
+		var link = this;
+		link.style.pointerEvents = 'none';
+
 		if (leftPanel && rightPanel && postsTitle && creatorsTitle && trendImage) {
 			if (isTrending) {
 				trendImage.src = '/svg/fire.svg';
 			} else {
-				trendImage.src = '/svg/fire-lit.svg';
+				trendImage.src = '/svg/fire-blue.svg';
 			}
 
 			// Slide out the sidebars
@@ -42,15 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
 				leftPanel.classList.add('slide-in-left');
 				rightPanel.classList.remove('hidden', 'slide-out-right');
 				rightPanel.classList.add('slide-in-right');
+
+				// Re-enable button
+				link.style.pointerEvents = 'auto';
 			}, 500); // Match the duration of the slide-out animation
 		} else {
 			console.error('One or more elements are not found.');
 		}
-	}
-
-	if (trendButton) {
-		trendButton.addEventListener('click', toggleTrending);
-	} else {
-		console.error('Trending button not found.');
-	}
+	});
 });
